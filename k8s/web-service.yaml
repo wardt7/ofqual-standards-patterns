@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-service
+spec:
+  selector:
+    app: web
+  ports:
+    - protocol: TCP
+      port: 8080 # This is the port you access from
+      targetPort: 80 # Must match what is the exposed port on the container
+      nodePort: 30001 # This is the internal node port for going between the load balancer 
+                      # and the pods. Must be between 30000 and 32767 for minikube.
+  type: LoadBalancer
+---
